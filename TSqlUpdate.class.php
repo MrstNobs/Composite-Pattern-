@@ -28,7 +28,7 @@
                 }
                 else if ($value!==''){
                     // caso seja um tipo de dado
-                    $this->columnValues[$column] = $value/
+                    $this->columnValues[$column] = $value;
                 }
                 else {
                     // caso seja um NULL
@@ -48,11 +48,11 @@
             // monta os pares: coluna = valor
             if($this->columnValues){
                 foreach ($this->columnValues as $column => $value){
-                    set[] = "{$column} = {$value}";;
+                    $set[] = "{$column} = {$value}";
                 }
             }
             $this->sql .= 'SET' . implode (',',$set);
-            
+
             //retorna a clausula Where do objeto $this->criteria
             if($this->criteria){
                 $this->sql .= 'WHERE' . $this->criteria->dump();
