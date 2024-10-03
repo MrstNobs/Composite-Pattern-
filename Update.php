@@ -1,39 +1,37 @@
-<?php
-    /* Função AutoLoad 
-    *  Carrega uma calsse quando ela é necessária, ou seja, quando é instanciado
-    *  pela primeria vez
-    */
+<?php 
 
-    // Função para o autoload das classes
-    spl_autoload_register(function ($classe) {
-        if (file_exists("{$classe}.class.php")) {
-            include_once "{$classe}.class.php";
-        }
-    });
+/* função autoload 
+* Carrega uma classe quando ela é necessária, ou seja, quando é instanciado 
+* pela primeira vez
+*/
 
-    // cria uma criterio de seleção de dados
-    $criteria = new TCriteria;
-    $criteria->add(new TFilter('id', '=', 3));
+spl_autoload_register(function ($classe) {
+    if (file_exists("{$classe}.class.php")) {
+        include_once "{$classe}.class.php";
+    }
+});
 
-    //cria instrução de UPDATE
-    $sql = new TSqlUpdate;
+// cria um criterio de seleção de dados
 
-    //define a entidade
-    $sql->setEntity('aluno');
+$criteria = new TCriteria;
+$criteria->add(new TFilter('id','=','3'));
 
-    //atribui o valor de cada coluna
-    $sql->setRowData('nome', 'Pedro Cardoso da Silva');
-    $sql->setRowData('rua', 'Machado de Assis');
-    $sql->setRowData('fone', '(88) 91234 12345');
+//cria instrução de UPDATE
+$sql = new TSqlUpdate;
+//define a entidade
+$sql->setEntity('aluno');
+// atribui o valor de cada coluna
+$sql->setRowData('nome','Pedro Cardoso da Silva');
+$sql->setRowData('rua','Machado de Assis');
+$sql->setRowData('fone','(88)5555');
 
-    //define o criterio de seleção de dados
-    $sql->setCriteria($criteria);
+// define o critério de seleção de dados 
+$sql->setCriteria($criteria);
 
-    // processa instrução SQL
-    echo $sql->getInstruction();
+// processa instrução SQL
 
-    echo "<br>\n";
-    
+echo $sql->getInstruction();
 
+echo "<br>\n";
 
 ?>
